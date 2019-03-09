@@ -8,7 +8,8 @@ from .forms import NewUserForm
 # Create your views here.
 
 def homepage(request):
-		return render(request = request, template_name="main/home.html", context = {"courses": Course.objects.all})
+		return render(request = request, template_name="main/home.html", context = {"courses": Course.objects.all}) #UWAGA!
+		#Tutaj context przzekazuje za pomocą listy courses wszystkie obiekty Course, które potem zostaną przekazane do home.html (patrz - home.html)
 
 def register(request):
 	if request.method == "POST": #po wciśnięciu przycisku submite

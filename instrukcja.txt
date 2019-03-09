@@ -1,6 +1,11 @@
 1. Pobieramy Pythona i Django
+	po pobraniu Pythona, jeœli chcemy pobraæ Django wpisujemy w cmd:
+	pip install Django
+	sprawdzamy czy wszystko odby³o siê poprawnie
+	py -m django --version
 2. Uruchamiamy cmd w folderze, w którym mamy plik manage.py
 3. Wpisujemy polecenie "python manage.py runserver"
+4. Pod adresem http://127.0.0.1:8000 powinna wyœwietliæ siê nasza strona
 
 Wszystkie CSS i JS s¹ wziête z https://materializecss.com/
 Logowanie do /admin: login: admin has³o: admin
