@@ -1,0 +1,22 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+
+  <div class="row">
+  	{% for course in courses %}
+	    <div class="col s12 m6">
+	      <div class="card blue-grey darken-1">
+	        <div class="card-content white-text">
+	          <span class="card-title">{{course.course_title}}</span>
+				<p>{{course.course_description}}</p>
+				<p>{{course.course_published}}</p>
+				<br>
+	        </div>
+	        <div class="card-action">
+	          <a href="#">Start that course!</a>
+	        </div>
+	      </div>
+	    </div>
+	{% endfor%}
+  </div>
+{% endblock %}
