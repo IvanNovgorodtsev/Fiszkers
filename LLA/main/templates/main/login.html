@@ -9,6 +9,7 @@
         <p><label for="id_password">Hasło:</label>
             <input type="password" name="password" required id="id_password">
         </p>
+        {% csrf_token %}
 		<button class="btn" type="submit">Zaloguj</button>
 	</form>
 
