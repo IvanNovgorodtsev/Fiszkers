@@ -2,11 +2,15 @@
 
 {% block content %}
 	<form method="POST">
-		{% csrf_token %}
-		{{form.as_p}}
-
-		<button class="btn" type="submit">Login</button>
+		<input type="hidden" name="csrfmiddlewaretoken" value="z4MyFbTXMxgfoDVt8Ml1TyKf3QsDIeDpdQo87ElzLa6oUyDWhsU8ogdVtJwlryMk">
+		<p><label for="id_username">Nazwa użytkownika:</label>
+            <input type="text" name="username" autofocus required id="id_username">
+        </p>
+        <p><label for="id_password">Hasło:</label>
+            <input type="password" name="password" required id="id_password">
+        </p>
+		<button class="btn" type="submit">Zaloguj</button>
 	</form>
 
-	If you don't already have an account, <a href='/register'><strong>register </strong></a> for one!
+	Nie masz jeszcze konta? <a href='/register'><strong>Zarejestruj się! </strong></a>
 {% endblock %}
