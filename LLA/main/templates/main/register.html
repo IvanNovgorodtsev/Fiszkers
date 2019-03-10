@@ -2,6 +2,7 @@
 
 {% block content %}
 	<form method="POST">
+
 		<input type="hidden" name="csrfmiddlewaretoken" value="FreaprDQlj6ymgxl37aIpi5JZIhv2Rg1jdQKRU5skWWHSbfOcNJPU0yppBldLbpW">
 		<p><label for="id_username">Nazwa użytkownika:</label>
             <input type="text" name="username" maxlength="150" autofocus required id="id_username">
@@ -20,6 +21,7 @@
         <p><label for="id_password2">Powtórz hasło:</label>
             <input type="password" name="password2" required id="id_password2">
         </p>
+            {% csrf_token %}    
 		<button class="btn" type="submit">Zarejestruj</button>
 	</form>
 	Masz już konto? <a href='/login'><strong>Zaloguj się! </strong></a>
