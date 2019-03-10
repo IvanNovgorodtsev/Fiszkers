@@ -2,11 +2,25 @@
 
 {% block content %}
 	<form method="POST">
-		{% csrf_token %}
-		{{form.as_p}}
-
-		<button class="btn" type="submit">Register</button>
+		<input type="hidden" name="csrfmiddlewaretoken" value="FreaprDQlj6ymgxl37aIpi5JZIhv2Rg1jdQKRU5skWWHSbfOcNJPU0yppBldLbpW">
+		<p><label for="id_username">Login:</label>
+            <input type="text" name="username" maxlength="150" autofocus required id="id_username">
+        </p>
+        <p><label for="id_email">Email:</label>
+            <input type="email" name="email" required id="id_email">
+        </p>
+        <p><label for="id_password1">Hasło:</label>
+            <input type="password" name="password1" required id="id_password1">
+            <span class="helptext"><ul>
+                <li>Hasło nie może być takie samo jak login.</li>
+                <li>Hasło musi zawierać minimum 8 znaków.</li>
+                <li>Hasło musi zawierać minimum 1 literę.</li></ul>
+            </span>
+        </p>
+        <p><label for="id_password2">Powtórz hasło:</label>
+            <input type="password" name="password2" required id="id_password2">
+        </p>
+		<button class="btn" type="submit">Zarejestruj</button>
 	</form>
-
-	If you already have an account, <a href='/login'><strong>login </strong></a> instead!
+	Masz już konto? <a href='/login'><strong>Zaloguj się! </strong></a>
 {% endblock %}
