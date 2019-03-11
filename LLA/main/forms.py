@@ -17,3 +17,8 @@ class NewUserForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+class ContactForm(forms.Form):
+	imię = forms.CharField(max_length=100)
+	email = forms.EmailField(required=True)
+	wiadomość = forms.CharField(widget=forms.Textarea)

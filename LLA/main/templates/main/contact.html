@@ -1,0 +1,10 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+<h2>Napisz do nas!</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Wyslij" />
+</form>
+{% endblock %}

@@ -4,7 +4,8 @@ from .models import Course
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .forms import NewUserForm
+from .forms import NewUserForm, ContactForm
+from django.core.mail import send_mail
 # Create your views here.
 
 def homepage(request):
@@ -52,3 +53,18 @@ def login_request(request):
 				messages.error(request, f"{msg}: {form.error_messages[msg]}")
 	form = AuthenticationForm()
 	return render(request, "main/login.html", {"form":form})
+
+def contact(request):
+	if request.method == "POST":
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			 # send email code goes here
+			 sender_name = form.cleaned_data['name']
+			 sender_email = form.cleaned_data ['email']
+			 msg = "{0} sent you a new message:\n\n{1}".format(sender_name, form.cleaned_data['msg'])
+			 send_mail('New Enquiry', msg, sender_email, ['artur.dylewski.27@gmail.com'])
+			 messages.info(request, f"Dziekujemy za wiadomosc")
+	else:
+		form = ContactForm()
+
+	return render(request, "main/contact.html", {"form":form})
