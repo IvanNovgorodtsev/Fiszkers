@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import Course
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .forms import NewUserForm, ContactForm
+from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm
 from django.core.mail import send_mail
 # Create your views here.
 
@@ -18,9 +17,9 @@ def register(request):
 		if form.is_valid():
 			user = form.save() #tworzymy objekt, zapisujemy go w tabeli i jednocześnie przypisujemy do zmiennej user
 			username = form.cleaned_data.get('username') #przypisujemy zmiennej username wartość 'username' obiektu
-			messages.success(request, f"Succesfully registred") #wyświetlanie wiadomości; po kropce występuje tag wiadomości, dzięki czemu można rozróżniać ich rodzaje i np. dla różnych wiadomości wyświetlać komunikaty w różnej formie
+			messages.success(request, f"Zarejestrowano pomyślnie") #wyświetlanie wiadomości; po kropce występuje tag wiadomości, dzięki czemu można rozróżniać ich rodzaje i np. dla różnych wiadomości wyświetlać komunikaty w różnej formie
 			login(request,user) #od razu po rejestrecji logujemy naszego użytkownika
-			messages.info(request, f"You are now login as: {username}")
+			messages.info(request, f"Zalogowano jako: {username}")
 			return redirect("main:homepage") #przekierowanie do strony głównej
 		else:
 			for msg in form.error_messages:
@@ -32,7 +31,7 @@ def register(request):
 
 def logout_request(request):
 	logout(request)
-	messages.info(request, "Logged out successfully")
+	messages.info(request, "Pomyślnie wylogowano")
 	return redirect("main:homepage")
 
 def login_request(request):
@@ -44,10 +43,10 @@ def login_request(request):
 			user = authenticate(username = username, password = password)
 			if user is not None:
 				login(request,user)
-				messages.info(request, f"You are now logged in as: {username}")
+				messages.info(request, f"Zalogowano jako: {username}")
 				return redirect("main:homepage")
 			else:
-				messages.error(request, "Invalid username or password")
+				messages.error(request, "Błędna nazwa użytkownika lub hasło")
 		else:
 			for msg in form.error_messages:
 				messages.error(request, f"{msg}: {form.error_messages[msg]}")
@@ -68,3 +67,19 @@ def contact(request):
 		form = ContactForm()
 
 	return render(request, "main/contact.html", {"form":form})
+
+def profile_request(request):
+	if request.method == "POST":
+		u_form = UserUpdateForm(request.POST, instance = request.user)
+		p_form= ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+		if u_form.is_valid() and p_form.is_valid():
+			u_form.save()
+			p_form.save()
+			messages.success(request, f"Zaktualizowano profil.")
+			return redirect("main:profile")
+	else:
+		u_form = UserUpdateForm(instance = request.user)
+		p_form= ProfileUpdateForm(instance=request.user.profile)
+	context = {'u_form': u_form, 'p_form':p_form}
+
+	return render(request,"main/profile.html",context)

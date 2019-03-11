@@ -4,7 +4,7 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/">Strona główna</a></li>
         {% if user.is_authenticated %}
-	        <li><a href="/account">{{user.username}}</a></li>
+	        <li><a href="/profile">{{user.username}}</a></li>
 	        <li><a href="/logout">Wyloguj</a></li>
         {% else %}
 	        <li><a href="/register">Rejestracja</a></li>

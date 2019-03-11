@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,3 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_URL='/media/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
