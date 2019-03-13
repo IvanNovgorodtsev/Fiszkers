@@ -29,3 +29,14 @@ class Course(models.Model):
 
 	def __str__(self):
 		return self.course_title
+
+class Word(models.Model):
+	english=models.CharField(max_length=200)
+	polish=models.CharField(max_length=200)
+	
+	def __str__(self):
+		return self.english
+
+	def save(self, *args, **kwargs):
+		super(Word,self).save(*args,**kwargs)
+

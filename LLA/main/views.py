@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import Course
+from .models import Word
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm
 from django.core.mail import send_mail
+import csv
 # Create your views here.
 
 def homepage(request):
@@ -83,3 +85,18 @@ def profile_request(request):
 	context = {'u_form': u_form, 'p_form':p_form}
 
 	return render(request,"main/profile.html",context)
+
+
+def create_dictionary(request):
+	with open('main/A.csv') as csvfile:
+		reader=csv.DictReader(csvfile,delimiter=';', quoting=csv.QUOTE_NONE)
+		for row in reader:
+			print(row)
+			english_word=row['english']
+			polish_word=row['polish']
+			new_word=Word(english=english_word, polish=polish_word)
+			new_word.save()
+
+def show_dictionary(request):
+		create_dictionary(request)
+		return render(request = request, template_name="main/dictionary.html", context = {"dictionary": Word.objects.all()}) #UWAG
