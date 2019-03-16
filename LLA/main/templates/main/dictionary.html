@@ -1,10 +1,23 @@
 {% extends "main/header.html" %}
- {% block content %}
-  <div class="row">
-  	{% for w in Word %} <!---I tutaj właśnie iteruję po liście courses pobranej dzięki context w views.py --->
-		<p>{{w.english}}</p>
-		<p>{{w.polish}}</p>
-				<br>
+{% block content %}
+<div class="list-group">
+	<br>
+	{% for word in dictionary %}
+	<a href="#" class="list-group-item list-group-item-action align-items-start ">
+		<div class="d-flex w-100 flex-row">
+			<h5 class="mb-1">{{word.english}}</h5>
+		</div>
+		<p class="mb-1">{{word.polish}}</p>
+	</a>
 	{% endfor%}
-  </div>
+</div>
+
+<style>
+.list-group { 
+	margin: 0; 
+	min-width: 800px;
+	width: 100%;
+	;
+}
+</style>
 {% endblock %}

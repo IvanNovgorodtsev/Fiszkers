@@ -13,6 +13,7 @@ Logowanie do /admin: login: admin hasło: admin
 Trzeba zainstalować:
 - crispy_forms
 - pillow
+- pandas
 
 Możliwe też błędy w bazie danych, zawsze warto zrobić python manage.py makemigrations 
 a potem, jeżeli będzie jakaś migracja to python manage.py migrate
