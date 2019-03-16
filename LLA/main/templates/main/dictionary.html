@@ -1,0 +1,10 @@
+{% extends "main/header.html" %}
+ {% block content %}
+  <div class="row">
+  	{% for w in Word %} <!---I tutaj właśnie iteruję po liście courses pobranej dzięki context w views.py --->
+		<p>{{w.english}}</p>
+		<p>{{w.polish}}</p>
+				<br>
+	{% endfor%}
+  </div>
+{% endblock %}

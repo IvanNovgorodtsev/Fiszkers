@@ -37,6 +37,3 @@ class Word(models.Model):
 	def __str__(self):
 		return self.english
 
-	def save(self, *args, **kwargs):
-		super(Word,self).save(*args,**kwargs)
-
