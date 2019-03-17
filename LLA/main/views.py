@@ -46,7 +46,7 @@ def login_request(request):
 			if user is not None:
 				login(request,user)
 				messages.info(request, f"Zalogowano jako: {username}")
-				return redirect("main:homepage")
+				return redirect("main:user_page")
 			else:
 				messages.error(request, "Błędna nazwa użytkownika lub hasło")
 		else:
@@ -100,6 +100,7 @@ def create_dictionary(request):
 def show_dictionary(request):
 	return render(request = request, template_name="main/dictionary.html", context = {"dictionary": Word.objects.all()})
 
-		
+def user_page(request):
+	return render(request,"main/user_page.html", context = {"courses": Course.objects.all})	
 
 
