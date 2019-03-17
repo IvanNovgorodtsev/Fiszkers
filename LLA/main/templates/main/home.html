@@ -2,9 +2,9 @@
 
 {% block content %}
 
-  <div class="row">
+
   	{% for course in courses %} <!---I tutaj właśnie iteruję po liście courses pobranej dzięki context w views.py --->
-	    <div class="col s12 m6">
+	    <div class="col l6">
 	      <div class="card blue-grey darken-1">
 	        <div class="card-content white-text">
 	          <span class="card-title">{{course.course_title}}</span> <!---Mamy tutaj pojedynczy obiekt z listy courses, czyli po prostu Course (z models.py), więc mozemy się odwołać do jego poszczególnych kolumn --->
@@ -18,5 +18,5 @@
 	      </div>
 	    </div>
 	{% endfor%}
-  </div>
+
 {% endblock %}
