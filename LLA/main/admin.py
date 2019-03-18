@@ -5,6 +5,7 @@ from .models import Word
 
 
 
+admin.site.site_header = 'Languages Learning App Admin'
 admin.site.register(Profile)
 admin.site.register(Course)
 admin.site.register(Word)
