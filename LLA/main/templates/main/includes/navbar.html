@@ -1,5 +1,6 @@
 <nav>
     <div class="nav-wrapper">
+    <div class="links">
        <a href="/" class="brand-logo" style = "margin-left: 20px">Languages Learning App</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">        
         {% if user.is_authenticated %}
@@ -15,4 +16,27 @@
           <li><a href="/contact">Kontakt</a></li>
       </ul>
     </div>
+    </div>
+    <style>
+  
+    /* visited link */
+    .links
+    a:visited {
+      color: white;
+    }
+    
+    /* mouse over link */
+    a:hover {
+      color: white;
+    }
+    
+    /* selected link */
+    a:active {
+      color: white;
+    
+  }
+    a:link{
+      text-decoration: none;
+    }
+  </style>
   </nav>
