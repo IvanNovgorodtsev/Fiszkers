@@ -22,7 +22,7 @@ def register(request):
 			messages.success(request, f"Zarejestrowano pomyślnie") #wyświetlanie wiadomości; po kropce występuje tag wiadomości, dzięki czemu można rozróżniać ich rodzaje i np. dla różnych wiadomości wyświetlać komunikaty w różnej formie
 			login(request,user) #od razu po rejestrecji logujemy naszego użytkownika
 			messages.info(request, f"Zalogowano jako: {username}")
-			return redirect("main:homepage") #przekierowanie do strony głównej
+			return redirect("main:user_page") #przekierowanie do strony głównej
 		else:
 			for msg in form.error_messages:
 				messages.error(request, f"{msg}: {form.error_messages[msg]}")
