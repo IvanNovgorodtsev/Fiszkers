@@ -60,10 +60,10 @@ def contact(request):
 		form = ContactForm(request.POST)
 		if form.is_valid():
 			 # send email code goes here
-			 sender_name = form.cleaned_data['name']
+			 sender_name = form.cleaned_data['imię']
 			 sender_email = form.cleaned_data ['email']
-			 msg = "{0} sent you a new message:\n\n{1}".format(sender_name, form.cleaned_data['msg'])
-			 send_mail('New Enquiry', msg, sender_email, ['artur.dylewski.27@gmail.com'])
+			 msg = "{0} sent you a new message:\n\n{1}".format(sender_name, form.cleaned_data['wiadomość'])
+			 send_mail('New Enquiry', msg, sender_email, ['contact@lla.com'])
 			 messages.info(request, f"Dziekujemy za wiadomosc")
 	else:
 		form = ContactForm()
