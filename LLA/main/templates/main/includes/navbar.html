@@ -1,13 +1,14 @@
 <nav>
     <div class="nav-wrapper">
        <a href="/" class="brand-logo" style = "margin-left: 20px">Languages Learning App</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/">Strona główna</a></li>
-        <li><a href="/dictionary">Słownik</a></li>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">        
         {% if user.is_authenticated %}
+	      <li><a href="/user_page">Strona główna</a></li>
+	      <li><a href="/dictionary">Słownik</a></li>
 	        <li><a href="/profile">{{user.username}}</a></li>
 	        <li><a href="/logout">Wyloguj</a></li>
         {% else %}
+	      <li><a href="/">Strona główna</a></li>
 	        <li><a href="/register">Rejestracja</a></li>
 	        <li><a href="/login">Logowanie</a></li>
         {% endif %}
