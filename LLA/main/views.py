@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from .models import Course
-from .models import Word
+from .models import Word, Word_POL
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm
 from django.core.mail import send_mail
 import pandas as pd
+import numpy as np
+import re
 # Create your views here.
 
 def homepage(request):
@@ -96,9 +98,32 @@ def create_dictionary(request):
 		new_word.save()
 	return render(request = request, template_name="main/dictionary.html", context = {"dictionary": Word.objects.all()})
 
+def create_polish_dictionary(request):
+	file=pd.read_csv('pol-eng.csv', sep="\n",header=None)
+	words=np.array([])
+	for i in range(10000):
+		line=file[0][i]
+		line2=file[0][i+1]
+		x=re.search("[1-9].", line)
+		y=re.search("[1-9].", line2)
+		if x==None and y==None:
+			words=np.append(words,line)
+	
+	pol=words[0:][::2]
+	eng=words[1:][::2]
+
+	for i in range (len(pol)-1):
+		new_word=Word_POL(polish_w=pol[i], english_w=eng[i])
+		new_word.save()
+	return render(request = request, template_name="main/dictionary2.html", context = {"dictionary2": Word_POL.objects.all()})
+
 
 def show_dictionary(request):
 	return render(request = request, template_name="main/dictionary.html", context = {"dictionary": Word.objects.all()})
+
+def show_polish_dictionary(request):
+	return render(request = request, template_name="main/dictionary2.html", context = {"polish_dictionary": Word_POL.objects.all()})
+
 
 def user_page(request):
 	return render(request,"main/user_page.html", context = {"courses": Course.objects.all})	

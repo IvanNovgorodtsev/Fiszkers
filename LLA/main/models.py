@@ -37,3 +37,9 @@ class Word(models.Model):
 	def __str__(self):
 		return self.english
 
+class Word_POL(models.Model):
+	polish_w=models.CharField(max_length=200)
+	english_w=models.CharField(max_length=200)
+	
+	def __str__(self):
+		return self.polish_w
