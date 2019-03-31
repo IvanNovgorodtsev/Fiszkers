@@ -27,5 +27,6 @@ urlpatterns = [
     path("contact/", views.contact, name='contact'),
     path("profile/", views.profile_request, name='profile'),
     path("dictionary/", views.show_dictionary, name='dictionary'),
-    path("user_page/", views.user_page, name='user_page')
+    path("user_page/", views.user_page, name='user_page'),
+    path("course/",views.course,name='course')
 ]

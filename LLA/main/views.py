@@ -102,5 +102,6 @@ def show_dictionary(request):
 
 def user_page(request):
 	return render(request,"main/user_page.html", context = {"courses": Course.objects.all})	
-
+def course(request):
+	return render(request,"main/course.html")
 
