@@ -17,3 +17,11 @@ Trzeba zainstalować:
 
 Możliwe też błędy w bazie danych, zawsze warto zrobić python manage.py makemigrations 
 a potem, jeżeli będzie jakaś migracja to python manage.py migrate
+
+
+UWAGA! Słownik POL-ANG odpala się ok. 10 min. Po pierwszym uruchomieniu sprawdźcie, czy wgl się wam odpala ta zakładka (nie musicie czekać 10 min, jeżeli przez powiedzmy 2 min wam mieli i nic, to git, to możecie wyjść z tej zakładki). Jeżeli zakładka się nie odpala i wywala błąd, to musicie zrobić:
+
+python manage.py makemigrations
+gdy komunikat wyskoczy, że jedną z czynności w migracji jest "Create Word table" oprócz Word-POL, wtedy musicie znaleźć w folderze migrations (LLA>miain>migrations) migrację o numerze podanym w terminalu (prawdopodobnie ostatnia migracja) i usunąć z niej cały element od migrations.CreateModel( name = 'Word [...] )
+python manage.py migrate
+python manage.py runserver
