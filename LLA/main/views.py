@@ -6,6 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm
 from django.core.mail import send_mail
+from django.views.generic import ListView, DetailView
 import pandas as pd
 import numpy as np
 import re
@@ -131,5 +132,12 @@ def user_page(request):
 	return render(request,"main/user_page.html", context = {"courses": Course.objects.all})	
 
 def course(request):
-	return render(request,"main/course.html")
+	return render(request, "main/course_detail.html")
 
+class CourseListView(ListView):
+	model = Course
+	template_name= 'main/user_page.html'
+	context_object_name = 'courses'
+
+class CourseDetailView(DetailView):
+	model = Course

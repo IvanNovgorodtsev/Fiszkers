@@ -16,7 +16,10 @@
 		        <div class="card-content white-text">
                     <span class="card-title">Wybierz Ćwiczenie</span>
 					<br>
+                     <span class="card-title">{{object.course_title}}</span> <!---Mamy tutaj pojedynczy obiekt z listy courses, czyli po prostu Course (z models.py), więc mozemy się odwołać do jego poszczególnych kolumn --->
+					<p>{{object.course_description}}</p>
 		        </div>
+
 		         <div class="card-action">
 		          <a href=#>Pary</a>
 		          <a href=#>Fiszki</a>
