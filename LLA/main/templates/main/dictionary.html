@@ -1,5 +1,8 @@
 {% extends "main/header.html" %}
 {% block content %}
+
+
+
 <div class="list-group">
 	<br>
 	{% for word in dictionary %}
@@ -13,11 +16,12 @@
 </div>
 
 <style scoped>
-.list-group { 
-	margin: 0; 
+.list-group {
+	margin: 0;
 	min-width: 800px;
 	width: 100%;
 	;
 }
+
 </style>
 {% endblock %}
