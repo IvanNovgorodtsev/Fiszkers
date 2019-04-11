@@ -45,3 +45,6 @@ class Word_POL(models.Model):
 	def __str__(self):
 		return self.polish_w
 
+class Course_signup(models.Model):
+	profile = models.ForeignKey(User, on_delete=models.CASCADE)
+	course = models.ForeignKey(Course, on_delete=models.CASCADE)

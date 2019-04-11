@@ -131,7 +131,10 @@ def show_polish_dictionary(request):
 def user_page(request):
 	return render(request,"main/user_page.html", context = {"courses": Course.objects.all})	
 
-def course(request):
+def course(request, pk):
+	current_user = request.user
+	obj = Course.objects.get(pk=pk)
+	Course_signup(profile=current_user, course=obj).save()
 	return render(request, "main/course_detail.html")
 
 class CourseListView(ListView):

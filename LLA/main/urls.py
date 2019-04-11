@@ -28,6 +28,6 @@ urlpatterns = [
     path("profile/", views.profile_request, name='profile'),
     path("dictionary/", views.show_dictionary, name='dictionary'),
     path("dictionary2/", views.create_polish_dictionary, name='dictionary2'),
-    path("user_page/", CourseListView.as_view(), name='user_page'),
-    path('course/<int:pk>/',CourseDetailView.as_view(),name='course')
+    path("user_page/", views.user_page, name='user_page'),
+    path('course/<pk>/', views.course,name='course')
 ]
