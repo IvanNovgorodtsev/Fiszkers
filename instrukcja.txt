@@ -25,3 +25,7 @@ python manage.py makemigrations
 gdy komunikat wyskoczy, że jedną z czynności w migracji jest "Create Word table" oprócz Word-POL, wtedy musicie znaleźć w folderze migrations (LLA>miain>migrations) migrację o numerze podanym w terminalu (prawdopodobnie ostatnia migracja) i usunąć z niej cały element od migrations.CreateModel( name = 'Word [...] )
 python manage.py migrate
 python manage.py runserver
+
+
+UPDATE!!!!!!!!
+Chyba niestety faktycznie nie ma innej opcji na działanie tego, niż wyczyszczenie bazy danych. Ale jak się wyczyści, to wszystko śmiga
