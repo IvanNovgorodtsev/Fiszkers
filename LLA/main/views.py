@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Course
-from .models import Word, Word_POL
+from .models import Word, Word_POL, Course_signup
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -11,6 +11,7 @@ import pandas as pd
 import numpy as np
 import re
 # Create your views here.
+
 
 def homepage(request):
 		return render(request = request, template_name="main/home.html", context = {"courses": Course.objects.all}) #UWAGA!
@@ -103,7 +104,7 @@ def create_dictionary(request):
 def create_polish_dictionary(request):
 	file = pd.read_csv('main/pol-eng.csv', sep="\n", header=None)
 	words = np.array([])
-	for i in range(10000):
+	for i in range(2):
 		line = file[0][i]
 		line2 = file[0][i + 1]
 		x = re.search("[1-9].", line)
@@ -134,8 +135,12 @@ def user_page(request):
 def course(request, pk):
 	current_user = request.user
 	obj = Course.objects.get(pk=pk)
-	Course_signup(profile=current_user, course=obj).save()
-	return render(request, "main/course_detail.html")
+	q=Course_signup.objects.filter(profile=current_user)
+	if q.filter(course=obj.id):
+		return render(request,"main/course_detail.html")
+	else:
+		Course_signup(profile=current_user, course=obj).save()
+		return render(request, "main/course_detail.html")
 
 class CourseListView(ListView):
 	model = Course
