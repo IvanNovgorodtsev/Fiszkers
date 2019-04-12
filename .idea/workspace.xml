@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8492010f-4d84-4d2b-b4cb-7da16e97c94e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/LLA/main/templates/main/course_detail_passed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LLA/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/LLA/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LLA/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/LLA/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LLA/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/LLA/main/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LLA/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/LLA/main/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LLA/main/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/LLA/main/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LLA/main/migrations/0002_auto_20190308_2213.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LLA/main/migrations/0003_auto_20190311_2235.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LLA/main/templates/main/user_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/LLA/main/templates/main/user_page.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,14 +14,85 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LLA/main/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-305">
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LLA/main/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LLA/main/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1118">
+              <caret line="66" column="34" lean-forward="true" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/LLA/main/templates/main/user_page.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1581">
+              <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LLA/main/templates/main/includes/navbar.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LLA/main/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="31" column="52" lean-forward="true" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/LLA/main/models.py" />
+        <option value="$PROJECT_DIR$/LLA/main/urls.py" />
+        <option value="$PROJECT_DIR$/LLA/main/templates/main/user_page.html" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1383" />
+    <option name="height" value="745" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -32,13 +103,68 @@
         <subPane>
           <expand>
             <path>
-              <item name="FiszkersUpdated" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FiszkersUpdated" type="462c0819:PsiDirectoryNode" />
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="FiszkersUpdated" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FiszkersUpdated" type="462c0819:PsiDirectoryNode" />
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
               <item name="LLA" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
+              <item name="LLA" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
+              <item name="LLA" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="inspectionProfiles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
+              <item name="LLA" type="462c0819:PsiDirectoryNode" />
+              <item name="LLA" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
+              <item name="LLA" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
+              <item name="LLA" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
+              <item name="LLA" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
+              <item name="LLA" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Fiszkers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Fiszkers" type="462c0819:PsiDirectoryNode" />
+              <item name="LLA" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -75,16 +201,18 @@
       <updated>1554047333968</updated>
       <workItem from="1554047337378" duration="38000" />
       <workItem from="1554825414530" duration="45000" />
+      <workItem from="1555065084201" duration="8997000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83000" />
+    <option name="totallyTimeSpent" value="9080000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25416037" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25771812" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -98,7 +226,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -109,5 +237,62 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/LLA/main/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LLA/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="31" column="52" lean-forward="true" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LLA/main/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-305">
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LLA/main/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LLA/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1118">
+          <caret line="66" column="34" lean-forward="true" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LLA/main/templates/main/includes/navbar.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LLA/main/templates/main/user_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1581">
+          <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
