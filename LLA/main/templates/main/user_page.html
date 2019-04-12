@@ -18,7 +18,7 @@
 
 	<div class = "col">
 		<div class = "AddCourse">
-		<button class="button">Dodaj</button>
+		<button onclick="window.location.href = '/course_creator';"class="button">Dodaj</button>
 		</div>
 
 	</div>
@@ -28,7 +28,7 @@
 			</div>
 
 </div>
-		
+
 	</div>
 
 	  <div class="col">
@@ -45,7 +45,7 @@
 		          <a href="{% url 'main:course' course.id %}">Start that course!</a>
 		        </div>
 		      </div>
-		  </div>		    
+		  </div>
 		{% endfor %}
 	</div>
 

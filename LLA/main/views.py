@@ -4,7 +4,7 @@ from .models import Word, Word_POL, Course_signup
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm
+from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm, CreateCourseForm
 from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView
 import pandas as pd
@@ -141,6 +141,32 @@ def course(request, pk):
 	else:
 		Course_signup(profile=current_user, course=obj).save()
 		return render(request, "main/course_detail.html")
+
+def course_request(request):
+	if request.method == "POST":
+		u_form = UserUpdateForm(request.POST, instance = request.user)
+		p_form= ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+		if u_form.is_valid() and p_form.is_valid():
+			u_form.save()
+			p_form.save()
+			messages.success(request, f"Zaktualizowano profil.")
+			return redirect("main:profile")
+	else:
+		u_form = UserUpdateForm(instance = request.user)
+		p_form= ProfileUpdateForm(instance=request.user.profile)
+	context = {'u_form': u_form, 'p_form':p_form}
+
+	return render(request,"main/profile.html",context)
+
+def course_creator(request):
+	if request.method == "POST":
+		form = CreateCourseForm(request.POST)
+		if form.is_valid():
+			 form.save()
+			 messages.info(request, f"Kurs został utworzony")
+	else:
+		form = CreateCourseForm()
+	return render(request,"main/course_creator.html",  context ={"form":form})
 
 class CourseListView(ListView):
 	model = Course

@@ -12,11 +12,13 @@
 				<p>{{course.course_published}}</p>
 				<br>
 	        </div>
+             {% if user.is_authenticated %}
 	        <div class="card-action">
 	          <a href="{% url 'main:course' course.id %}">Start that course!</a>
 	        </div>
+            {% endif %}
 	      </div>
 	    </div>
-	{% endfor%}
+	{% endfor %}
 
 {% endblock %}
