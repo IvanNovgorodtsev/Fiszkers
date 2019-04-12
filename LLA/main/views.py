@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Course
 from .models import Word, Word_POL, Course_signup
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -116,17 +117,27 @@ def create_polish_dictionary(request):
 	eng = words[1:][::2]
 
 	for i in range(len(pol) - 1):
-		new_word = Word_POL(polish_w=pol[i], english_w=eng[i])
+		w=re.search("\/.*?\/.*[\<.*?\>]?",pol[i])
+		y=re.search("\[.*\]",eng[i])
+		new_word = Word_POL(polish_w=pol[i].replace(w[0],""), english_w=eng[i].replace(y[0],"")+"\t"+y[0])
 		new_word.save()
-	return render(request=request, template_name="main/dictionary2.html",
-				  context={"dictionary2": Word_POL.objects.all()})
+
+	return render(request=request, template_name="main/dictionary2.html", context={"dictionary2": Word_POL.objects.all()})
 
 
 def show_dictionary(request):
-	return render(request = request, template_name="main/dictionary.html", context = {"dictionary": Word.objects.all()})
+	word_list = Word.objects.all()
+	paginator = Paginator(word_list, 25) # Show 25 words per page
+	page = request.GET.get('page')
+	words = paginator.get_page(page)
+	return render(request = request, template_name="main/dictionary.html", context = {"dictionary": words })
 
 def show_polish_dictionary(request):
-	return render(request = request, template_name="main/dictionary2.html", context = {"polish_dictionary": Word_POL.objects.all()})
+	word_list = Word_POL.objects.all()
+	paginator = Paginator(word_list, 25) 
+	page = request.GET.get('page')
+	words = paginator.get_page(page)
+	return render(request = request, template_name="main/dictionary2.html", context = {"polish_dictionary": words})
 
 
 def user_page(request):

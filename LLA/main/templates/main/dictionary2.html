@@ -15,12 +15,65 @@
 	{% endfor%}
 </div>
 
-<style scoped>
+<div class="pagination">
+    
+		{% if dictionary2.has_previous %}
+			<a class="pagination-action" href="?page=1">
+			  <i class="fas fa-angle-double-left"></i>
+			</a>
+			<a class="pagination-action" href="?page={{ dictionary2.previous_page_number }}">
+			  <i class="fas fa-angle-left"></i>
+			</a>
+		{% endif %}
+  
+		{% for num in dictionary2.paginator.page_range %}
+		{% if dictionary2.number == num %}
+		  <span class="pagination-number pagination-current">{{num}}</span>
+		{% elif num > dictionary2.number|add:'-4' and num < dictionary2.number|add:'4' %}
+		  <a class="pagination-number" href="?page={{num}}">{{num}}</a>
+		{% endif %}
+		{% endfor%}
+  
+		{% if dictionary2.has_next %}
+			<a class="pagination-action" href="?page={{ dictionary2.next_page_number }}"><i class="fas fa-angle-right"></i></a>
+			<a class="pagination-action" href="?page={{ dictionary2.paginator.num_pages }}"><i class="fas fa-angle-double-right"></i></a>
+		{% endif %}
+  </div>
+
+<style lang="scss" scoped>
 .list-group { 
 	margin: 0; 
 	min-width: 800px;
 	width: 100%;
-	;
+	
+}
+.pagination{
+  text-align:center;
+  margin-top: 1em;
+  margin-block-end: 10em;
+  
+}
+.pagination-action{
+margin: 0 0.5em;
+display: inline-block;
+padding: 0.5em;
+color:#B9B9B9;
+font-size: 1.3em;
+}
+.pagination-action:hover{
+  color:#3354AA;
+}
+.pagination-number{
+  background-color: #e66767;
+  padding: 0.5em 0.4em;
+  color:#fff;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  /* border-radius: 2px; */
+
+}
+.pagination-number:hover, .pagination-current{
+  background-color: rgb(223, 77, 77);
 }
 
 </style>
