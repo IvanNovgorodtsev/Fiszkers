@@ -22,7 +22,7 @@
 
 		         <div class="card-action">
 		          <a href=#>Pary</a>
-		          <a href=#>Fiszki</a>
+		          <a href="http://127.0.0.1:8000/mycourse/?course={{object.id}}">Fiszki</a>
                   <a href=#>Luki</a>
                   <a href=#>Lista Słów</a>
 
@@ -30,5 +30,65 @@
 		      </div>
 		  </div>
 	</div>
+
+<style>
+
+
+body { font-family: sans-serif; }
+
+.scene {
+  width: 200px;
+  height: 260px;
+  #border: 1px solid #CCC;
+  margin: 40px 0;
+  perspective: 600px;
+}
+
+.flashcard {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+  top: 200px;
+  left: 200px;
+}
+
+.flashcard.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  line-height: 260px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  backface-visibility: hidden;
+}
+
+.flashcard__face--front {
+  background: red;
+}
+
+.flashcard__face--back {
+  background: blue;
+  transform: rotateY(180deg);
+}
+
+}
+
+</style>
+
+<script>
+var flashcard = document.querySelector('.flashcard');
+flashcard.addEventListener( 'click', function() {
+  flashcard.classList.toggle('is-flipped');
+});
+</script>
 
 {% endblock %}

@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Course
+from .models import Course, FlashCard
 from .models import Word, Word_POL
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm
+from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm, Check
 from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView
 import pandas as pd
@@ -125,14 +125,14 @@ def show_dictionary(request):
 	return render(request = request, template_name="main/dictionary.html", context = {"dictionary": Word.objects.all()})
 
 def show_polish_dictionary(request):
-	return render(request = request, template_name="main/dictionary2.html", context = {"polish_dictionary": Word_POL.objects.all()})
+	return render(request = request, template_name="main/dictionary2.html", context = {"dictionary2": Word_POL.objects.all()})
 
 
 def user_page(request):
 	return render(request,"main/user_page.html", context = {"courses": Course.objects.all})	
 
 def course(request):
-	return render(request, "main/course_detail.html")
+	return render(request, "main/course_detail.html", context = {"flashcards": FlashCard.objects.all()})
 
 class CourseListView(ListView):
 	model = Course
@@ -141,3 +141,15 @@ class CourseListView(ListView):
 
 class CourseDetailView(DetailView):
 	model = Course
+
+def mycourse(request):
+	course = int(request.GET.get('course', 1))
+	if request.method == "POST" and 'known' in request.POST:
+		fid = request.POST.get('fid')
+		messages.info(request, f"Brawo!")
+		flashcard = FlashCard.objects.get(id=fid)
+		flashcard.known = 1
+		flashcard.save()
+	elif request.method == "POST" and 'unknown' in request.POST:
+		messages.info(request, f"Musisz jeszcze poćwiczyć!")
+	return render(request, "main/mycourse.html", context = {"flashcards": FlashCard.objects.all(), "course": course})

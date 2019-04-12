@@ -45,3 +45,8 @@ class Word_POL(models.Model):
 	def __str__(self):
 		return self.polish_w
 
+class FlashCard(models.Model):
+	words = models.ForeignKey(Word, default=1, on_delete=models.SET_DEFAULT)
+	course = models.ForeignKey(Course, default=1, on_delete=models.SET_DEFAULT)
+	known = models.IntegerField()
+
