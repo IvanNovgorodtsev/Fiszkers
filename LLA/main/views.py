@@ -99,11 +99,11 @@ def create_dictionary(request):
 		polish_word=file.iloc[i]['polish']
 		new_word=Word(english=english_word, polish=polish_word)
 		new_word.save()
-	return render(request = request, template_name="main/dictionary.html", context = {"dictionary": Word.objects.all()})
+	return render(request = request, template_name="main/eng_pol_dictionary.html", context = {"eng_pol_dictionary": Word.objects.all()})
 
 
 def create_polish_dictionary(request):
-	file = pd.read_csv('main/pol-eng.csv', sep="\n", header=None)
+	file = pd.read_csv('main/pol_eng.csv', sep="\n", header=None)
 	words = np.array([])
 	for i in range(2):
 		line = file[0][i]
@@ -122,7 +122,7 @@ def create_polish_dictionary(request):
 		new_word = Word_POL(polish_w=pol[i].replace(w[0],""), english_w=eng[i].replace(y[0],"")+"\t"+y[0])
 		new_word.save()
 
-	return render(request=request, template_name="main/dictionary2.html", context={"dictionary2": Word_POL.objects.all()})
+	return render(request=request, template_name="main/pol_eng_dictionary.html", context={"pol_eng_dictionary": Word_POL.objects.all()})
 
 
 def show_dictionary(request):
@@ -130,14 +130,14 @@ def show_dictionary(request):
 	paginator = Paginator(word_list, 25) # Show 25 words per page
 	page = request.GET.get('page')
 	words = paginator.get_page(page)
-	return render(request = request, template_name="main/dictionary.html", context = {"dictionary": words })
+	return render(request = request, template_name="main/eng_pol_dictionary.html", context = {"eng_pol_dictionary": words })
 
 def show_polish_dictionary(request):
 	word_list = Word_POL.objects.all()
 	paginator = Paginator(word_list, 25) 
 	page = request.GET.get('page')
 	words = paginator.get_page(page)
-	return render(request = request, template_name="main/dictionary2.html", context = {"polish_dictionary": words})
+	return render(request = request, template_name="main/pol_eng_dictionary.html", context = {"pol_eng_dictionary": words})
 
 
 def user_page(request):
