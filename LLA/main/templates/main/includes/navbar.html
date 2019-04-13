@@ -5,8 +5,8 @@
       <ul id="nav-mobile" class="right hide-on-med-and-down">        
         {% if user.is_authenticated %}
 	      <li><a href="/user_page">Strona główna</a></li>
-        <li><a href="/dictionary">Słownik ang-pol</a></li>
-        <li><a href="/dictionary2">Słownik pol-ang</a></li>
+        <li><a href="/eng_pol_dictionary">Słownik ang-pol</a></li>
+        <li><a href="/pol_eng_dictionary">Słownik pol-ang</a></li>
 	        <li><a href="/profile">{{user.username}}</a></li>
 	        <li><a href="/logout">Wyloguj</a></li>
         {% else %}

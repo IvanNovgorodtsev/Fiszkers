@@ -1,0 +1,80 @@
+{% extends "main/header.html" %}
+{% block content %}
+
+
+
+<div class="list-group">
+	<br>
+	{% for d in pol_eng_dictionary %}
+	<a href="#" class="list-group-item list-group-item-action align-items-start ">
+		<div class="d-flex w-100 flex-row">
+			<h5 class="mb-1">{{d.polish_w}}</h5>
+		</div>
+		<p class="mb-1">{{d.english_w}}</p>
+	</a>
+	{% endfor%}
+</div>
+
+<div class="pagination">
+    
+		{% if pol_eng_dictionary.has_previous %}
+			<a class="pagination-action" href="?page=1">
+			  <i class="fas fa-angle-double-left"></i>
+			</a>
+			<a class="pagination-action" href="?page={{ pol_eng_dictionary.previous_page_number }}">
+			  <i class="fas fa-angle-left"></i>
+			</a>
+		{% endif %}
+  
+		{% for num in pol_eng_dictionary.paginator.page_range %}
+		{% if pol_eng_dictionary.number == num %}
+		  <span class="pagination-number pagination-current">{{num}}</span>
+		{% elif num > pol_eng_dictionary.number|add:'-4' and num < pol_eng_dictionary.number|add:'4' %}
+		  <a class="pagination-number" href="?page={{num}}">{{num}}</a>
+		{% endif %}
+		{% endfor%}
+  
+		{% if pol_eng_dictionary.has_next %}
+			<a class="pagination-action" href="?page={{ pol_eng_dictionary.next_page_number }}"><i class="fas fa-angle-right"></i></a>
+			<a class="pagination-action" href="?page={{ pol_eng_dictionary.paginator.num_pages }}"><i class="fas fa-angle-double-right"></i></a>
+		{% endif %}
+  </div>
+
+<style lang="scss" scoped>
+.list-group { 
+	margin: 0; 
+	min-width: 800px;
+	width: 100%;
+	
+}
+.pagination{
+  text-align:center;
+  margin-top: 1em;
+  margin-block-end: 10em;
+  
+}
+.pagination-action{
+margin: 0 0.5em;
+display: inline-block;
+padding: 0.5em;
+color:#B9B9B9;
+font-size: 1.3em;
+}
+.pagination-action:hover{
+  color:#3354AA;
+}
+.pagination-number{
+  background-color: #e66767;
+  padding: 0.5em 0.4em;
+  color:#fff;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  /* border-radius: 2px; */
+
+}
+.pagination-number:hover, .pagination-current{
+  background-color: rgb(223, 77, 77);
+} */
+
+</style>
+{% endblock %}
