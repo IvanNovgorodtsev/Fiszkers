@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Course
+from .models import Course, FlashCard
 from .models import Word, Word_POL, Course_signup
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.forms import AuthenticationForm
@@ -186,3 +186,15 @@ class CourseListView(ListView):
 
 class CourseDetailView(DetailView):
 	model = Course
+
+def mycourse(request):
+	course = int(request.GET.get('course', 1))
+	if request.method == "POST" and 'known' in request.POST:
+		fid = request.POST.get('fid')
+		messages.info(request, f"Brawo!")
+		flashcard = FlashCard.objects.get(id=fid)
+		flashcard.known = 1
+		flashcard.save()
+	elif request.method == "POST" and 'unknown' in request.POST:
+		messages.info(request, f"Musisz jeszcze poćwiczyć!")
+	return render(request, "main/mycourse.html", context = {"flashcards": FlashCard.objects.all(), "course": course})

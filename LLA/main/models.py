@@ -48,3 +48,8 @@ class Word_POL(models.Model):
 class Course_signup(models.Model):
 	profile = models.ForeignKey(User, on_delete=models.CASCADE)
 	course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+class FlashCard(models.Model):
+	words = models.ForeignKey(Word, default=1, on_delete=models.SET_DEFAULT)
+	course = models.ForeignKey(Course, default=1, on_delete=models.SET_DEFAULT)
+	known = models.IntegerField()
