@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Course, FlashCard
-from .models import Word, Word_POL, Course_signup
+from .models import Word, Word_POL, Course_signup, CustomWord
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm, CreateCourseForm
+from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm, CreateCourseForm, AddWordToCourseForm
 from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView
 import pandas as pd
@@ -198,3 +198,15 @@ def mycourse(request):
 	elif request.method == "POST" and 'unknown' in request.POST:
 		messages.info(request, f"Musisz jeszcze poćwiczyć!")
 	return render(request, "main/mycourse.html", context = {"flashcards": FlashCard.objects.all(), "course": course})
+
+def word_list(request):
+	course = (int)(request.GET.get('course',1))
+	if request.method == "POST":
+		form = AddWordToCourseForm(request.POST)
+		if form.is_valid():
+			form.save()
+			messages.info(request, f"Słowo zostało dodane")
+	else:
+		form = AddWordToCourseForm()
+	return render(request, "main/word_list.html", context = {"CustomWord": CustomWord.objects.all(), "Course": course, "form":form})
+

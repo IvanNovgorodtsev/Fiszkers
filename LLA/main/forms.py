@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import  Course
+from .models import  Course, CustomWord
 from .models import Profile
 from .models import Word, FlashCard
 #tutaj nadpisujemy 'forms' - dzięki temu możmy do gotowej już klasy UserCreationForm dodać adres email
@@ -46,3 +46,8 @@ class Check(forms.ModelForm):
 	class Meta:
 		model = FlashCard
 		fields = ('words', 'course', 'known')
+
+class AddWordToCourseForm(forms.ModelForm):
+	class Meta:
+		model = CustomWord
+		fields = ['word','definition']

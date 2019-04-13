@@ -32,4 +32,6 @@ urlpatterns = [
     path("user_page/", views.user_page, name='user_page'),
     path('course/<pk>/', views.course,name='course'),
     path("mycourse/", views.mycourse, name='mycourse'),
+    path("course_creator/", views.course_creator, name='course_creator'),
+    path("word_list/", views.word_list, name='word_list')
 ]
