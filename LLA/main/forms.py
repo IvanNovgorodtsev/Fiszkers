@@ -51,3 +51,6 @@ class AddWordToCourseForm(forms.ModelForm):
 	class Meta:
 		model = CustomWord
 		fields = ['word','definition']
+
+class Gap(forms.Form):
+	userword = forms.CharField(max_length=100, label='')

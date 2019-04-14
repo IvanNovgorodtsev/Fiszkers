@@ -3,8 +3,6 @@
 {% block content %}
 
 <p></p>
- {% for f in flashcards %}
-   {% if f.course_id == course and f.known == 0 %}
 
      <p></p>
 
@@ -12,19 +10,17 @@
           <input type="checkbox"  />
           
           <div class="card">
-            <div class="front"><h2>{{f.words}}</h2></div>
-            <div class="back"><h2>{{f.words.polish}}</h2></div>
+            <div class="front"><h2>{{flashcards.words}}</h2></div>
+            <div class="back"><h2>{{flashcards.words.polish}}</h2></div>
           </div>
       </label>
       <form>
         {% csrf_token %}
-        <input type="hidden" name="fid" value="{{ f.id }}">
+        <input type="hidden" name="fid" value="{{ flashcards.id }}">
 
        <button class="btn" type="submit" name="unknown" value="0" formmethod="post">Nie umiem</button> 
        <button class="btn" type="submit" name="known" value="0" formmethod="post">Umiem</button> 
      </form>
-    {% endif %}
-{% endfor%}
 
 
 
@@ -48,7 +44,7 @@ label {
     height: 200px;
     position: relative;
     left: 60%;
-    top: 20%;
+    top: 35%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     cursor: pointer;

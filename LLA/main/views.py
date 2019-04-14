@@ -5,12 +5,13 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
-from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm, CreateCourseForm, AddWordToCourseForm
+from .forms import NewUserForm, ContactForm, UserUpdateForm, ProfileUpdateForm, CreateCourseForm, AddWordToCourseForm, Gap
 from django.core.mail import send_mail
 from django.views.generic import ListView, DetailView
 import pandas as pd
 import numpy as np
 import re
+import random
 # Create your views here.
 
 
@@ -159,7 +160,7 @@ def course(request, pk):
 	obj = Course.objects.get(pk=pk)
 	q=Course_signup.objects.filter(profile=current_user)
 	if q.filter(course=obj.id):
-		return render(request,"main/course_detail.html")
+		return render(request,"main/course_detail.html", context = {"object":obj})
 	else:
 		Course_signup(profile=current_user, course=obj).save()
 		return render(request, "main/course_detail.html")
@@ -200,6 +201,12 @@ class CourseDetailView(DetailView):
 
 def mycourse(request):
 	course = int(request.GET.get('course', 1))
+	base = FlashCard.objects.all()
+	base = base.filter(known=0)
+	if len(base) == 0:
+		messages.info(request, f"Znasz już wszystkie słowa")
+		return render(request, "main/mycourse.html", context = {"flashcards": base, "course": course})
+	randomFC = random.choice(list(base))
 	if request.method == "POST" and 'known' in request.POST:
 		fid = request.POST.get('fid')
 		messages.info(request, f"Brawo!")
@@ -208,7 +215,7 @@ def mycourse(request):
 		flashcard.save()
 	elif request.method == "POST" and 'unknown' in request.POST:
 		messages.info(request, f"Musisz jeszcze poćwiczyć!")
-	return render(request, "main/mycourse.html", context = {"flashcards": FlashCard.objects.all(), "course": course})
+	return render(request, "main/mycourse.html", context = {"flashcards": randomFC, "course": course})
 
 def word_list(request):
 	course = (int)(request.GET.get('course',1))
@@ -221,3 +228,19 @@ def word_list(request):
 		form = AddWordToCourseForm()
 	return render(request, "main/word_list.html", context = {"CustomWord": CustomWord.objects.all(), "Course": course, "form":form})
 
+def gaps(request):
+	newtrueword = random.choice(list(FlashCard.objects.all()))
+	if request.method == "POST":
+		form = Gap(request.POST)
+		if form.is_valid():
+		 # send email code goes here
+			userword = form.cleaned_data['userword']
+			trueword = request.POST.get('trueword')
+			if (userword == trueword):
+				messages.info(request, f"Bardzo dobrze")
+			else:
+				messages.info(request, f"Źle")
+	else:
+		form = Gap()
+
+	return render(request, "main/gaps.html", context = {"flashcards": newtrueword, "course": course, "form":form})
