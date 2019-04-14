@@ -105,7 +105,7 @@ def create_dictionary(request):
 def create_polish_dictionary(request):
 	file = pd.read_csv('main/pol_eng.csv', sep="\n", header=None)
 	words = np.array([])
-	for i in range(2):
+	for i in range(64355):
 		line = file[0][i]
 		line2 = file[0][i + 1]
 		x = re.search("[1-9].", line)
@@ -125,18 +125,29 @@ def create_polish_dictionary(request):
 	return render(request=request, template_name="main/pol_eng_dictionary.html", context={"pol_eng_dictionary": Word_POL.objects.all()})
 
 
+
 def show_dictionary(request):
 	word_list = Word.objects.all()
+	query=request.GET.get("q")
+	if query:
+		word_list=word_list.filter(english__startswith=query)
+
 	paginator = Paginator(word_list, 25) # Show 25 words per page
 	page = request.GET.get('page')
 	words = paginator.get_page(page)
+
 	return render(request = request, template_name="main/eng_pol_dictionary.html", context = {"eng_pol_dictionary": words })
 
 def show_polish_dictionary(request):
 	word_list = Word_POL.objects.all()
+	query=request.GET.get("q")
+	if query:
+		word_list=word_list.filter(polish_w__startswith=query)
+
 	paginator = Paginator(word_list, 25) 
 	page = request.GET.get('page')
 	words = paginator.get_page(page)
+
 	return render(request = request, template_name="main/pol_eng_dictionary.html", context = {"pol_eng_dictionary": words})
 
 
