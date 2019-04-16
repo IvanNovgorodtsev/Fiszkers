@@ -94,7 +94,7 @@ def profile_request(request):
 
 
 def create_dictionary(request):
-	file=pd.read_csv("main/A.csv", delimiter=';')
+	file=pd.read_csv("main/ALL.csv", delimiter=';')
 	for i in range(len(file)):
 		english_word=file.iloc[i]['english']
 		polish_word=file.iloc[i]['polish']
@@ -104,7 +104,7 @@ def create_dictionary(request):
 
 
 def create_polish_dictionary(request):
-	file = pd.read_csv('main/pol_eng.csv', sep="\n", header=None)
+	file = pd.read_csv('main/pol-eng.csv', sep="\n", header=None)
 	words = np.array([])
 	for i in range(64355):
 		line = file[0][i]
@@ -163,7 +163,7 @@ def course(request, pk):
 		return render(request,"main/course_detail.html", context = {"object":obj})
 	else:
 		Course_signup(profile=current_user, course=obj).save()
-		return render(request, "main/course_detail.html")
+		return render(request, "main/course_detail.html", context = {"object":obj})
 
 def course_request(request):
 	if request.method == "POST":
@@ -201,7 +201,7 @@ class CourseDetailView(DetailView):
 
 def mycourse(request):
 	course = int(request.GET.get('course', 1))
-	base = FlashCard.objects.all()
+	base = CustomWord.objects.filter(course = Course.objects.get(id = course))
 	base = base.filter(known=0)
 	if len(base) == 0:
 		messages.info(request, f"Znasz już wszystkie słowa")
@@ -210,7 +210,7 @@ def mycourse(request):
 	if request.method == "POST" and 'known' in request.POST:
 		fid = request.POST.get('fid')
 		messages.info(request, f"Brawo!")
-		flashcard = FlashCard.objects.get(id=fid)
+		flashcard = CustomWord.objects.get(id=fid)
 		flashcard.known = 1
 		flashcard.save()
 	elif request.method == "POST" and 'unknown' in request.POST:
@@ -222,14 +222,17 @@ def word_list(request):
 	if request.method == "POST":
 		form = AddWordToCourseForm(request.POST)
 		if form.is_valid():
-			form.save()
+			post = form.save(commit=False)
+			post.course = Course.objects.get(id=course)
+			post.save()
 			messages.info(request, f"Słowo zostało dodane")
 	else:
 		form = AddWordToCourseForm()
 	return render(request, "main/word_list.html", context = {"CustomWord": CustomWord.objects.all(), "Course": course, "form":form})
 
 def gaps(request):
-	newtrueword = random.choice(list(FlashCard.objects.all()))
+	course = int(request.GET.get('course', 1))
+	newtrueword = random.choice(list(CustomWord.objects.filter(course = Course.objects.get(id = course))))
 	if request.method == "POST":
 		form = Gap(request.POST)
 		if form.is_valid():

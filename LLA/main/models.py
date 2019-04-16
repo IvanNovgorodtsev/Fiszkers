@@ -57,4 +57,5 @@ class FlashCard(models.Model):
 class CustomWord(models.Model):
 	word = models.CharField(max_length=100)
 	definition = models.TextField()
-	course = models.ForeignKey(Course, default=1, on_delete=models.SET_DEFAULT)
+	course = models.ForeignKey(Course,default=1, on_delete=models.CASCADE)
+	known = models.BooleanField(default=False)
