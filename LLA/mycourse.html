@@ -1,0 +1,107 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+
+<p></p>
+
+     <p></p>
+
+       <label>
+          <input type="checkbox"  />
+          
+          <div class="card">
+            <div class="front"><h2>{{flashcards.word}}</h2></div>
+            <div class="back"><h2>{{flashcards.definition}}</h2></div>
+          </div>
+      </label>
+      <form>
+        {% csrf_token %}
+        <input type="hidden" name="fid" value="{{ flashcards.id }}">
+
+       <button class="btn" type="submit" name="unknown" value="0" formmethod="post">Nie umiem</button> 
+       <button class="btn" type="submit" name="known" value="0" formmethod="post">Umiem</button> 
+     </form>
+
+
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+    background: #F17563;
+    font-family: Open Sans;
+    font-size: 50px;
+    color: #222;
+}
+
+label {
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    display: block;
+    width: 400px;
+    height: 200px;
+    position: relative;
+    left: 60%;
+    top: 35%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.card {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
+    z-index: 20;
+}
+
+    .card div {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: #FFB6C1;
+        color: white;
+        text-align: center;
+        line-height: 200px;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 2px;
+    }
+
+    .card .back {
+        background: #222;
+        background-color: #bbb;
+        color: black;
+        -webkit-transform: rotateX(180deg);
+        transform: rotateX(180deg);
+    }
+
+label:hover .card {
+    -webkit-transform: rotateX(20deg);
+    transform: rotateX(20deg);
+    box-shadow: 0 20px 20px rgba(50,50,50,.2);
+}
+
+input {
+    display: none;
+}
+
+:checked + .card {
+    transform: rotateX(180deg);
+    -webkit-transform: rotateX(180deg);
+}
+
+label:hover :checked + .card {
+    transform: rotateX(160deg);
+    -webkit-transform: rotateX(160deg);
+    box-shadow: 0 20px 20px rgba(255,255,255,.2);
+}
+</style>
+
+{% endblock %}
