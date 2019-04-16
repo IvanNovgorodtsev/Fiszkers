@@ -213,13 +213,27 @@ def mycourse(request):
 		flashcard = CustomWord.objects.get(id=fid)
 		flashcard.known = 1
 		flashcard.save()
+		base = CustomWord.objects.filter(course = Course.objects.get(id = course))
+		base = base.filter(known=0)
+		if len(base) == 0:
+			messages.info(request, f"Znasz już wszystkie słowa")
+			return render(request, "main/mycourse.html", context = {"flashcards": base, "course": course})
+		randomFC = random.choice(list(base))
 	elif request.method == "POST" and 'unknown' in request.POST:
 		messages.info(request, f"Musisz jeszcze poćwiczyć!")
 	return render(request, "main/mycourse.html", context = {"flashcards": randomFC, "course": course})
 
 def word_list(request):
 	course = (int)(request.GET.get('course',1))
-	if request.method == "POST":
+	if request.method == "POST" and 'unknown' in request.POST:
+		fid = request.POST.get('fid')
+		messages.info(request, f"Brawo!")
+		flashcard = CustomWord.objects.get(id=fid)
+		flashcard.known = 0
+		flashcard.save()
+		form = AddWordToCourseForm()
+		return render(request, "main/word_list.html", context = {"CustomWord": CustomWord.objects.all(), "Course": course, "form":form})
+	elif request.method == "POST":
 		form = AddWordToCourseForm(request.POST)
 		if form.is_valid():
 			post = form.save(commit=False)
@@ -228,7 +242,8 @@ def word_list(request):
 			messages.info(request, f"Słowo zostało dodane")
 	else:
 		form = AddWordToCourseForm()
-	return render(request, "main/word_list.html", context = {"CustomWord": CustomWord.objects.all(), "Course": course, "form":form})
+		return render(request, "main/word_list.html", context = {"CustomWord": CustomWord.objects.all(), "Course": course, "form":form})
+	return render(request, "main/word_list.html", context = {"CustomWord": CustomWord.objects.all(), "Course": course})
 
 def gaps(request):
 	course = int(request.GET.get('course', 1))
@@ -243,6 +258,7 @@ def gaps(request):
 				messages.info(request, f"Bardzo dobrze")
 			else:
 				messages.info(request, f"Źle")
+				messages.info(request, f"Poprawne tłumaczenie: {trueword}")
 	else:
 		form = Gap()
 
